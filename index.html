@@ -28,16 +28,16 @@
 			var data = ctx.getImageData(0,0,png.width,png.height);
 			ctx.clearRect(0,0,canvas.width,canvas.height);
 
-			for(var y = 0; y < data.width; y++){
-				for(var x = 0; x < data.height; x++){
+			for(var y = 0; y < data.height; y++){
+				for(var x = 0; x < data.width; x++){
 					var p = (x + y * data.width) * 4;
 
 					if(data.data[p + 3] > 129){
 						var particle = {
 							x0: x,
 							y0: y,
-							x1: png.width / 2,
-							y1: png.height / 2,
+							x1: png.width / 3,
+							y1: png.height / 3,
 							speed: Math.random() * 4 + 1,
 							color: `rgb(${data.data[p]},
 										${data.data[p + 1]},
@@ -61,7 +61,7 @@
 			for(var i = 0; i < particles.length; i++){
 				var particle = particles[i];
 				ctx.fillStyle = particle.color;
-				ctx.fillRect(particle.x1 * 3, particle.y1 * 3, 2, 2);
+				ctx.fillRect(particle.x1 * 3, particle.y1 * 3, 3, 3);
 			}
 			requestAnimationFrame(render);
 		};
